@@ -1,8 +1,11 @@
+import axios from 'axios';
 import React from 'react';
-import { Member } from '../../../Context/Member';
+import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../../http/http';
 import style from './Login.module.css'
 
 const Login = () => {
+    let navigate = useNavigate();
     // form submit 이벤트
     const OnSubmit = (e) => {
         e.preventDefault();
@@ -10,30 +13,34 @@ const Login = () => {
         // id localStorage 생성
         
         // 아이디 가져오기
-        const id = e.target.exampleInputEmail1.value;
-        const pass = e.target.exampleInputPassword1.value;
+        const email = e.target.exampleInputEmail1.value;
+        const password = e.target.exampleInputPassword1.value;
         // id pass 값이 없으면 return
-        if (!id ) {
+        if (!email ) {
             return window.alert("이메일을 입력해 주세요");
         }
-        if (!pass) {
+        if (!password) {
             return window.alert("패스워드를 입력해 주세요");
         }
-        const members = Member;
-        let res = false;
-        members.map((member) =>{
-            console.log(typeof(id), typeof(member.id ), typeof(pass), typeof(member.pw));
-            if(id === member.id && pass === member.pw){
-                localStorage.setItem('idx', member.idx);
-               res = true;
-             
-            }
-        })
-        if(res){
-            window.location.href = '/';
-        }else{
-            window.alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+   
+        const body = {
+            email ,
+            password ,
         }
+        axios({
+            url: `${baseUrl}/auth/login`,
+            method: "POST",
+            headers: {
+                "Content-Type": `application/json`,
+            },
+            data: JSON.stringify(body),
+        }).then((result) => {
+            console.log(result.data);
+            localStorage.setItem('idx',result.data.token);
+            navigate('/');
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 
     return (

@@ -13,13 +13,16 @@ const ClientList = () => {
                     <div className={style.naver__main_box_list_item}>
                         <div className={style.naver__main_box_list_item_title}>
                             <div>
-                                회사명
+                                상호명
                             </div>
                             <div>
-                                에이피아이 키
+                                사업자 번호
                             </div>
                             <div>
-                                회원 아이디
+                                보안키
+                            </div>
+                            <div>
+                                보고서 다운로드
                             </div>
                         </div>
                     </div>

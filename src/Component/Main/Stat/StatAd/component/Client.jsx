@@ -15,6 +15,9 @@ const Client = ({client,style}) => {
         <div>
             {client.customerId}
         </div>
+        <div>
+           <button>다운로드</button>
+        </div>
     </div>
     );
 };

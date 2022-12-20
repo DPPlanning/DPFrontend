@@ -12,7 +12,7 @@ const SideBar = () => {
                 <ul className={`${style.side_bar__list}`}>
                     {
                         list.map((item, index) => {
-                            return <SideBarBlock item={item} style={style} />
+                            return <SideBarBlock item={item} style={style} key={index} />
                         })
                     }
                 </ul>

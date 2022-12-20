@@ -1,47 +1,75 @@
 import React, { useState } from 'react';
 import style from './Main.module.css';
-import ReactPaginate from 'react-paginate';
-
-function Items({ currentItems }) {
-    return (
-      <>
-        {currentItems &&
-          currentItems.map((item) => (
-            <div>
-              <h3>Item #{item}</h3>
-            </div>
-          ))}
-      </>
-    );
-  }
+import { useLayoutEffect } from 'react';
+import axios from 'axios';
+import { baseUrl } from '../../http/http';
+import MainClientList from './List/Main/MainClientList';
 
 const Main = () => {
-    const [itemOffset, setItemOffset] = useState(0);
-    const itemsPerPage = 1;
-    const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 , 15,16,17,18,19,20,21,22,23,24,25,26,27,28];
-    const endOffset = itemOffset + itemsPerPage;
-    const currentItems = items.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(items.length / itemsPerPage);
-    
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % items.length;
-        console.log(newOffset);
-        setItemOffset(newOffset);
-      };
+    const [myClients, setMyClients] = useState([]);
+
+    useLayoutEffect(() => {
+        const accessToken = localStorage.getItem('idx');
+        axios({
+            url: `${baseUrl}/client?`,
+            method: "GET",
+            headers: {
+                "Content-Type": `application/json`,
+                "Authorization": `Bearer ${accessToken}`
+            },
+
+        }).then((result) => {
+            console.log(result);
+            if (result.status === 200) {
+                setMyClients(result.data);
+            } else {
+                window.alert();
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [])
     return (
         <div>
-            Main
-               <Items currentItems={currentItems} />
-               <ReactPaginate 
-              breakLabel="..."
-              nextLabel="next >"
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              previousLabel="< previous"
-              renderOnZeroPageCount={null}
-              forcePage={12}
-            />
+            <section>
+                <h3>내 클라이언트</h3>
+                <ul>
+                    <li className={style.employee__client_list_title} key={-1}>
+                        <div>
+                            상호명
+                        </div>
+                        <div>
+                            사업자 번호
+                        </div>
+                        <div>
+                            담당자
+                        </div>
+                        <div>
+                            이메일
+                        </div>
+                        <div>
+                            연락처1
+                        </div>
+                        <div>
+                            연락처2
+                        </div>
+                        <div>
+                            수정
+                        </div>
+                        <div>
+                            삭제
+                        </div>
+                    </li>
+                    {myClients &&
+                        myClients.map((items, index) => {
+                            return (
+                                <MainClientList items={items} index={index} style={style} />
+                            )
+                        })
+                    }
+                </ul>
+            
+            </section>
         </div>
     );
 };

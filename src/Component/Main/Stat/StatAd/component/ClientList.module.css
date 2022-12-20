@@ -18,9 +18,12 @@
     width: var(--name-width);
 }
 .naver__main_box_list_item_title>div:nth-of-type(2){
-    width: var(--key-width);
+    width: var(--number-width);
 }
 .naver__main_box_list_item_title>div:nth-of-type(3){
+    width: var(--key-width);
+}
+.naver__main_box_list_item_title>div:nth-of-type(4){
     width: var(--id-width);
 }
 .naver__main_box_list_item_list{
@@ -34,8 +37,11 @@
     width: var(--name-width);
 }
 .naver__main_box_list_item_list>div:nth-of-type(2){
-    width: var(--key-width);
+    width: var(--number-width);
 }
 .naver__main_box_list_item_list>div:nth-of-type(3){
+    width: var(--key-width);
+}
+.naver__main_box_list_item_list>div:nth-of-type(4){
     width: var(--id-width);
 }

@@ -19,6 +19,7 @@ hr{
 
 :root{
   --name-width: 100px;
+  --number-width: 100px;
   --key-width: 700px;
   --id-width: 100px;
   --hover-color: #f5f5f5;

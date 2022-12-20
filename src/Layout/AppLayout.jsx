@@ -1,13 +1,13 @@
 import React from 'react';
+
 import { Outlet } from 'react-router-dom';
+import Alert from '../Component/Alert/Alert';
 import Footer from '../Component/Footer/Footer';
 import Header from '../Component/Header/Header';
 import SideBar from '../Component/SideBar/SideBar';
-import {useRecoilState} from 'recoil'
-import { SideBarOnOff } from '../Component/recoil/SideBar';
 
 const AppLayout = () => {
-  const [sideBarOnOff, setSideBarOnOff] = useRecoilState(SideBarOnOff);
+
   // 토큰에 ID가 없으면 로그인 페이지로 이동
    //const location = useLocation();
    const url = new URL(window.location.href); ;
@@ -34,6 +34,7 @@ const AppLayout = () => {
                <Outlet />
              </section>
              <Footer />
+             <Alert />
            </main>
          </div>
        }

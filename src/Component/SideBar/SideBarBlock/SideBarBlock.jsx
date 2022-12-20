@@ -18,7 +18,7 @@ const SideBarBlock = ({ item, style }) => {
             }
             <ul className="">
                 {slideOnOff && item.children && item.children.map((item) => (
-                    <li className={` ${style.slide_bar__list__item}`} >
+                    <li className={` ${style.slide_bar__list__item}`} key={item.title} >
                         <Link className={`${style.slide_bar__list__children}`} to={item.path} >
                             {item.title}
                         </Link>

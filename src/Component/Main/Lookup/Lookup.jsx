@@ -11,14 +11,6 @@ const Lookup = () => {
                 사업자 번호로 조회하기
             </h3>
             <LookupForm style={style} />
-            {/* <form name='name' onSubmit={OnSubmit}  className={style.search__form}>
-                <div>
-                    <input type="text" className={style.search__input} />
-                </div>
-                <div>
-                    <button className={style.search__button}>상호명으로 조회</button>
-                </div>
-            </form> */}
         </div>
     );
 };

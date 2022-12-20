@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { busynessNumberHyphen } from '../../../../utils/funtion';
 
 const LookupForm = ({ style }) => {
     let navigate = useNavigate();
@@ -10,13 +11,14 @@ const LookupForm = ({ style }) => {
         if (!businessNumber) {
             return window.alert('사업자 번호를 입력해 주세요');
         }
-        navigate(`/lookup/client?n=${businessNumber}`);
+        
+        window.location.href = `/lookup/client?n=${businessNumber}`
 
     }
     const OnChange = (e) => {
         const { value } = e.target;
 
-        if (e.nativeEvent.data !== null && value.length === 12) {
+        if (e.nativeEvent.data !== null && value.length === 13) {
             return;
         }
         if (isNaN(e.nativeEvent.data)) {
@@ -24,12 +26,7 @@ const LookupForm = ({ style }) => {
             return window.alert("숫자만 입력이 가능합니다.")
         }
         let str = value
-        if (e.nativeEvent.data !== null && value.length === 3) {
-            str += "-";
-        }
-        if (e.nativeEvent.data !== null && value.length === 6) {
-            str += "-";
-        }
+        str = busynessNumberHyphen(e.nativeEvent.data  ,value)
         setBusinessNumber(str);
     }
     return (
