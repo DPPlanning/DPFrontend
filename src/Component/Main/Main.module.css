@@ -44,3 +44,12 @@
     display: block;
     margin: 10px auto;
 }
+.naver__api_list_title{
+    display: grid;
+    grid-template-columns: 150px 180px 200px 300px 300px 80px 80px 80px;
+}
+.naver__api_list_title div{
+    padding: 5px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    text-align: center;
+}

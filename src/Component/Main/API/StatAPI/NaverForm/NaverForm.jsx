@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { busynessNumberHyphen } from '../../../../../utils/funtion';
-
+import axios from 'axios';
+import { baseUrl } from '../../../../../http/http';
 const NaverForm = ({ style }) => {
 
     const [businessName, setBusinessName] = useState('');
     const [businessNumber, setBusinessNumber] = useState('');
-    const [customerName, setCustomerName] = useState('');
+    const [customerId, setCustomerId] = useState('');
     const [accessLicense, setAccessLicense] = useState('');
     const [secretKey, setSecretKey] = useState('');
     const OnChange = (e) => {
@@ -29,8 +30,8 @@ const NaverForm = ({ style }) => {
                 setBusinessNumber(str);
 
                 break;
-            case 'customerName':
-                setCustomerName(value);
+            case 'customerId':
+                setCustomerId(value);
                 break;
             case 'accessLicense':
                 setAccessLicense(value);
@@ -45,6 +46,28 @@ const NaverForm = ({ style }) => {
     }
     const Onsubmit = (e) => {
         e.preventDefault();
+        const accessToken = localStorage.getItem('idx');
+        const body = {
+            businessNumber 
+            ,businessName 
+            ,customerId 
+            ,accessLicense 
+            ,secretKey 
+        }
+        axios({
+            url: `${baseUrl}/api/naver`,
+            method: "POST",
+            headers: {
+                "Content-Type": `application/json`,
+                "Authorization": `Bearer ${accessToken}`
+            },
+            data: JSON.stringify(body),
+        }).then((result) => {
+            console.log(result.data);
+           
+        }).catch((err) => {
+            console.log(err);
+        })
     }
     return (
         <form className={style.api_input__section} onSubmit={Onsubmit}>
@@ -79,9 +102,9 @@ const NaverForm = ({ style }) => {
                 <div>
                     <input
                         type="text"
-                        value={customerName}
+                        value={customerId}
                         onChange={OnChange}
-                        name="customerName" />
+                        name="customerId" />
                 </div>
             </div>
             <div>

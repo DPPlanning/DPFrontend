@@ -71,7 +71,7 @@ const MainClientList = ({ items, index, style }) => {
             setPhon1(items.client_phon_1);
             setPhon2(items.client_phon_2);
         }
-    },[showUpdateModal])
+    },[items,showUpdateModal])
     const OnChange = (e)=>{
         const {name, value} = e.target;
         switch (name) {
