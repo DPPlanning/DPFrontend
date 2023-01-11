@@ -1,13 +1,14 @@
 .search__section{
     margin: 100px auto;
-    width: 340px;
+    width: 440px;
 }
 .search__title{
     text-align: center;
 }
 .search__form{
     display: grid;
-    grid-template-columns: 250px auto;
+    align-items: end;
+    grid-template-columns: 300px auto;
     gap: 2px;
 }
 .search__input{

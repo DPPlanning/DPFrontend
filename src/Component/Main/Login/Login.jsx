@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../../http/http';
 import style from './Login.module.css'
-
+import logo from '../../../img/logo/logo.png'
 const Login = () => {
     let navigate = useNavigate();
     // form submit 이벤트
@@ -27,6 +27,7 @@ const Login = () => {
             email ,
             password ,
         }
+        
         axios({
             url: `${baseUrl}/auth/login`,
             method: "POST",
@@ -49,7 +50,7 @@ const Login = () => {
             <div className={style.login_title}>
                 <div className="row">
                     <div className="col-12">
-                        <img src="http://www.dpplanning.co.kr/RAD/PEG/logo_16275215309465.png" alt="로고" />
+                        <img src={logo} alt="로고" />
                         <h1 className="text-center">Login</h1>
                     </div>
                 </div>

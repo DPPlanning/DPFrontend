@@ -25,6 +25,10 @@
 }
 .look_up__client__section_form form{
     display: flex;
+    align-items: flex-end;
+}
+.look_up__client__section_form form p{
+    margin: 0;
 }
 .look_up__client__section_form input[type=text]{
     height: 25px;
